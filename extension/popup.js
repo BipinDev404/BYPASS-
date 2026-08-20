@@ -1,6 +1,45 @@
 const $ = id => document.getElementById(id);
 let unlocked = false;
 
+// Custom Modal Logic
+function customAlert(message) {
+  return new Promise(resolve => {
+    $('custom-modal-title').innerText = 'Alert';
+    $('custom-modal-message').innerText = message;
+    $('custom-modal-input').style.display = 'none';
+    $('custom-modal-cancel').style.display = 'none';
+    $('custom-modal-overlay').style.display = 'flex';
+    
+    $('custom-modal-ok').onclick = () => {
+      $('custom-modal-overlay').style.display = 'none';
+      resolve();
+    };
+  });
+}
+
+function customPrompt(message) {
+  return new Promise(resolve => {
+    $('custom-modal-title').innerText = 'Verification Required';
+    $('custom-modal-message').innerText = message;
+    $('custom-modal-input').style.display = 'block';
+    $('custom-modal-input').value = '';
+    $('custom-modal-cancel').style.display = 'block';
+    $('custom-modal-overlay').style.display = 'flex';
+    $('custom-modal-input').focus();
+    
+    $('custom-modal-ok').onclick = () => {
+      const val = $('custom-modal-input').value;
+      $('custom-modal-overlay').style.display = 'none';
+      resolve(val);
+    };
+    
+    $('custom-modal-cancel').onclick = () => {
+      $('custom-modal-overlay').style.display = 'none';
+      resolve(null);
+    };
+  });
+}
+
 // Mock chrome.storage.local if not running in extension
 if (typeof chrome === 'undefined' || !chrome.storage) {
   window.chrome = window.chrome || {};
@@ -253,7 +292,7 @@ $('save').onclick = () => {
   const user = $('user').value.trim();
   const pass = $('pass').value.trim();
   
-  if (!name || !user || !pass) return alert('Fill all fields');
+  if (!name || !user || !pass) return customAlert('Fill all fields');
 
   chrome.storage.local.get(['vault'], r => {
     let v = r.vault || [];
@@ -300,10 +339,16 @@ function renderList(items) {
           <span class="li-user" style="margin-top: 0;">${e.user}</span>
         </div>
       </div>
+      
+      <div id="inline-pass-${e.id}" class="inline-pass" style="display: none; padding: 10px; margin-top: 10px; background: #000; border: 1px solid #333; border-radius: 6px; font-family: monospace; font-size: 14px; color: #fff; word-break: break-all; transition: all 0.3s ease;">
+        ${e.pass}
+      </div>
+
       <div class="actions">
-        <button class="view-btn" data-pass="${e.pass}">
-          <svg style="vertical-align: middle; margin-right: 4px;" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-          VIEW
+        <button class="view-btn" data-id="${e.id}" data-pass="${e.pass}">
+          <svg class="icon-view" style="vertical-align: middle; margin-right: 4px;" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+          <svg class="icon-hide" style="vertical-align: middle; margin-right: 4px; display: none;" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
+          <span class="btn-text">VIEW</span>
         </button>
         <button class="copy-btn" data-pass="${e.pass}">
           <svg style="vertical-align: middle; margin-right: 4px;" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
@@ -325,17 +370,33 @@ function renderList(items) {
   // Attach Copy events
   document.querySelectorAll('.copy-btn').forEach(btn => {
     btn.onclick = (event) => {
-      navigator.clipboard.writeText(event.target.dataset.pass);
-      const original = event.target.innerText;
-      event.target.innerText = 'Copied!';
-      setTimeout(() => event.target.innerText = original, 1200);
+      navigator.clipboard.writeText(event.target.closest('button').dataset.pass);
+      const original = event.target.closest('button').innerHTML;
+      event.target.closest('button').innerHTML = 'Copied!';
+      setTimeout(() => event.target.closest('button').innerHTML = original, 1200);
     };
   });
 
   // Attach View events
   document.querySelectorAll('.view-btn').forEach(btn => {
     btn.onclick = (event) => {
-      alert("Password: " + event.target.closest('button').dataset.pass);
+      const button = event.target.closest('button');
+      const passBox = $('inline-pass-' + button.dataset.id);
+      const isHidden = passBox.style.display === 'none';
+      
+      if (isHidden) {
+        passBox.style.display = 'block';
+        passBox.classList.add('inline-pass-anim');
+        button.querySelector('.icon-view').style.display = 'none';
+        button.querySelector('.icon-hide').style.display = 'inline-block';
+        button.querySelector('.btn-text').innerText = 'HIDE';
+      } else {
+        passBox.style.display = 'none';
+        passBox.classList.remove('inline-pass-anim');
+        button.querySelector('.icon-view').style.display = 'inline-block';
+        button.querySelector('.icon-hide').style.display = 'none';
+        button.querySelector('.btn-text').innerText = 'VIEW';
+      }
     };
   });
 
@@ -389,16 +450,16 @@ $('search').oninput = e => {
   });
 };
 
-$('export-btn').onclick = () => {
+$('export-btn').onclick = async () => {
   if (!unlocked) return;
-  const pw = prompt("Please enter your Master Password to export your vault:");
+  const pw = await customPrompt("Please enter your Master Password to export your vault:");
   if (pw !== appConfig.master) {
-    alert("Incorrect Master Password.");
+    if (pw !== null) await customAlert("Incorrect Master Password.");
     return;
   }
-  chrome.storage.local.get(['vault'], r => {
+  chrome.storage.local.get(['vault'], async r => {
     const v = r.vault || [];
-    if (v.length === 0) return alert('Vault is empty!');
+    if (v.length === 0) return await customAlert('Vault is empty!');
     
     // Create JSON blob
     const dataStr = JSON.stringify(v, null, 2);
@@ -418,11 +479,11 @@ $('export-btn').onclick = () => {
   });
 };
 
-$('import-btn').onclick = () => {
+$('import-btn').onclick = async () => {
   if (!unlocked) return;
-  const pw = prompt("Please enter your Master Password to import passwords:");
+  const pw = await customPrompt("Please enter your Master Password to import passwords:");
   if (pw !== appConfig.master) {
-    alert("Incorrect Master Password.");
+    if (pw !== null) await customAlert("Incorrect Master Password.");
     return;
   }
   $('import-file').click();
@@ -461,11 +522,11 @@ $('import-file').onchange = (e) => {
         
         chrome.storage.local.set({ vault: v }, () => {
           load();
-          alert(`Import successful! Added ${addedCount} new items.`);
+          customAlert(`Import successful! Added ${addedCount} new items.`);
         });
       });
     } catch (err) {
-      alert('Error parsing JSON file. Please ensure it is a valid BYPASS export.');
+      customAlert('Error parsing JSON file. Please ensure it is a valid BYPASS export.');
     }
     e.target.value = '';
   };
