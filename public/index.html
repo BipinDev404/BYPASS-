@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BYPASS Vault | Offline Password Manager</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Outfit', sans-serif; }
+        .hero-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255,75,19,0.15) 0%, rgba(0,0,0,0) 70%);
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: -1;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="bg-black text-white antialiased min-h-screen selection:bg-[#ff4b13] selection:text-white relative overflow-x-hidden">
+    <div class="hero-glow"></div>
+    
+    <!-- Navigation -->
+    <nav class="max-w-7xl mx-auto px-6 py-8 flex justify-between items-center relative z-10">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-[#111] rounded-full border border-gray-800 flex items-center justify-center text-[#ff4b13]">
+                <svg width="20" height="20" viewBox="0 0 512 512" fill="currentColor"><path d="M368 192h-16v-80a96 96 0 1 0-192 0v80h-16a64 64 0 0 0-64 64v176a64 64 0 0 0 64 64h224a64 64 0 0 0 64-64V256a64 64 0 0 0-64-64zm-144 0v-80a64 64 0 1 1 128 0v80z"/><path d="M256 368a32 32 0 1 1 32-32 32.036 32.036 0 0 1-32 32z"/></svg>
+            </div>
+            <span class="text-xl font-bold tracking-wider">BYPASS</span>
+        </div>
+        <div class="hidden md:flex items-center">
+            <a href="#features" class="text-gray-400 hover:text-white transition mr-8 text-sm font-semibold">Features</a>
+            <a href="#how-to" class="text-gray-400 hover:text-white transition mr-8 text-sm font-semibold">How to Install</a>
+            <a href="/bypass-extension.zip" class="bg-[#ff4b13] hover:bg-[#e03a0b] text-white px-6 py-2.5 rounded-full text-sm font-bold transition shadow-[0_0_15px_rgba(255,75,19,0.3)]">Download .ZIP</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <main class="max-w-7xl mx-auto px-6 pt-20 pb-28 text-center relative z-10">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-semibold text-[#ff4b13] mb-8">
+            <span class="w-2 h-2 rounded-full bg-[#ff4b13] animate-pulse"></span>
+            Version 1.2.0 is now available
+        </div>
+        <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-8">
+            Your vault.<br/>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#ff4b13] to-[#ff8c00]">Zero tracking.</span>
+        </h1>
+        <p class="text-xl text-gray-400 max-w-2xl mx-auto mb-12">
+            A fast, 100% offline browser extension to generate, store, and manage your passwords locally. It lives entirely on your machine.
+        </p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="/bypass-extension.zip" class="bg-white text-black hover:bg-gray-200 px-8 py-4 rounded-full text-base font-bold transition flex items-center gap-2 w-full sm:w-auto justify-center">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                Download Extension (.zip)
+            </a>
+            <a href="#how-to" class="px-8 py-4 rounded-full text-base font-bold text-gray-300 hover:text-white transition flex items-center gap-2 bg-white/5 border border-white/10 hover:bg-white/10 w-full sm:w-auto justify-center">
+                Installation Guide
+            </a>
+        </div>
+    </main>
+
+    <!-- Feature Grid -->
+    <section id="features" class="border-t border-white/10 bg-[#0a0a0a]">
+        <div class="max-w-7xl mx-auto px-6 py-24">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">Engineered for absolute privacy.</h2>
+                <p class="text-gray-400">Everything happens inside your machine.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-[#111] border border-gray-800 p-8 rounded-2xl hover:border-[#ff4b13]/50 transition group">
+                    <div class="w-12 h-12 bg-black rounded-xl border border-gray-800 flex items-center justify-center text-[#ff4b13] mb-6 group-hover:scale-110 transition">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">100% Offline Storage</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">No databases, no cloud sync. All your passwords are encrypted and stored safely using your browser's isolated local storage.</p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="bg-[#111] border border-gray-800 p-8 rounded-2xl hover:border-[#ff4b13]/50 transition group">
+                    <div class="w-12 h-12 bg-black rounded-xl border border-gray-800 flex items-center justify-center text-[#ff4b13] mb-6 group-hover:scale-110 transition">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Cryptographic Generator</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Generate 16-character cryptographic strings instantly, mixing letters, numbers, and symbols to stop brute-force attacks.</p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="bg-[#111] border border-gray-800 p-8 rounded-2xl hover:border-[#ff4b13]/50 transition group">
+                    <div class="w-12 h-12 bg-black rounded-xl border border-gray-800 flex items-center justify-center text-[#ff4b13] mb-6 group-hover:scale-110 transition">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">JSON Import / Export</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Your data remains yours. Easily backup your entire vault into a single JSON file, or restore across browsers instantly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How to Install -->
+    <section id="how-to" class="py-24">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">How to Install</h2>
+                <p class="text-gray-400">Add the extension to Chrome, Edge, or Brave in a few clicks.</p>
+            </div>
+            
+            <div class="space-y-6">
+                <div class="bg-[#111] border border-gray-800 p-6 rounded-2xl flex gap-6 items-start">
+                    <div class="w-10 h-10 shrink-0 bg-white text-black font-bold flex items-center justify-center rounded-full">1</div>
+                    <div>
+                        <h4 class="text-xl font-bold mb-2">Download & Extract</h4>
+                        <p class="text-gray-400">Click the Download .ZIP button above. Once downloaded, extract the contents to a folder on your computer.</p>
+                    </div>
+                </div>
+                
+                <div class="bg-[#111] border border-gray-800 p-6 rounded-2xl flex gap-6 items-start">
+                    <div class="w-10 h-10 shrink-0 bg-white text-black font-bold flex items-center justify-center rounded-full">2</div>
+                    <div>
+                        <h4 class="text-xl font-bold mb-2">Open Extension Settings</h4>
+                        <p class="text-gray-400">In your browser, type <code class="bg-black border border-gray-700 px-2 py-1 rounded text-[#ff4b13] mx-1">chrome://extensions</code> (or <code class="bg-black border border-gray-700 px-2 py-1 rounded text-[#ff4b13] mx-1">brave://extensions</code>) into the URL bar and hit Enter.</p>
+                    </div>
+                </div>
+                
+                <div class="bg-[#111] border border-gray-800 p-6 rounded-2xl flex gap-6 items-start">
+                    <div class="w-10 h-10 shrink-0 bg-white text-black font-bold flex items-center justify-center rounded-full">3</div>
+                    <div>
+                        <h4 class="text-xl font-bold mb-2">Enable Developer Mode & Load</h4>
+                        <p class="text-gray-400">Toggle on <strong class="text-white">Developer mode</strong> in the top right corner. Click the <strong class="text-white">Load unpacked</strong> button and select the folder you extracted in step 1.</p>
+                    </div>
+                </div>
+                
+                <div class="bg-[#111] border border-gray-800 p-6 rounded-2xl flex gap-6 items-start">
+                    <div class="w-10 h-10 shrink-0 bg-white text-black font-bold flex items-center justify-center rounded-full">4</div>
+                    <div>
+                        <h4 class="text-xl font-bold mb-2">Pin & Setup</h4>
+                        <p class="text-gray-400">Click the puzzle icon in your browser toolbar, pin <strong class="text-white">BYPASS Vault</strong>, and click it to perform your initial secure setup!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Developer Section -->
+    <section id="developer" class="border-t border-white/10 bg-[#050505] py-24">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">Meet the Developer</h2>
+                <p class="text-[#ff4b13] font-semibold tracking-wide uppercase text-sm">Building things that matter</p>
+            </div>
+            
+            <div class="bg-[#111] border border-gray-800 rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden group">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-[#ff4b13] opacity-5 rounded-full blur-3xl group-hover:opacity-10 transition duration-700"></div>
+                
+                <div class="flex flex-col md:flex-row gap-12 items-start relative z-10">
+                    <div class="flex-1">
+                        <h3 class="text-4xl font-bold mb-2">Bipin Yadav</h3>
+                        <p class="text-xl text-gray-300 mb-6">Student Developer & Builder</p>
+                        
+                        <div class="mb-8">
+                            <h4 class="text-sm font-bold text-gray-500 uppercase mb-3">Focus</h4>
+                            <p class="text-gray-300 leading-relaxed">
+                                Web Development • App Development • AI • Cybersecurity • Creative Technology
+                            </p>
+                        </div>
+                        
+                        <div class="mb-8">
+                            <h4 class="text-sm font-bold text-gray-500 uppercase mb-3">About Me</h4>
+                            <p class="text-gray-400 leading-relaxed">
+                                I’m Bipin Yadav, a student developer who enjoys building apps, websites, and experimental tech projects. I’m interested in turning ideas into useful digital products and learning new technologies by actually building things.
+                            </p>
+                        </div>
+                        
+                        <div class="mb-8">
+                            <h4 class="text-sm font-bold text-gray-500 uppercase mb-3">Currently Exploring</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300">Web & App Development</span>
+                                <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300">AI-assisted / vibe coding</span>
+                                <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300">JavaScript, React & Node.js</span>
+                                <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300">Android Development</span>
+                                <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300">Cybersecurity & Linux</span>
+                                <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300">UI/UX & Creative Tech</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex-1 bg-black/50 p-8 rounded-2xl border border-white/5 w-full md:w-auto">
+                        <div class="mb-8">
+                            <h4 class="text-sm font-bold text-[#ff4b13] uppercase mb-3">Projects</h4>
+                            <p class="text-gray-300 leading-relaxed font-semibold">
+                                BeepCinema • YuvaUpdate • Quizzy • Baula • Momate • Personal Web & App Experiments
+                            </p>
+                        </div>
+                        
+                        <div class="mb-8">
+                            <h4 class="text-sm font-bold text-gray-500 uppercase mb-3">Tech I Use</h4>
+                            <div class="flex flex-wrap gap-2 text-sm text-gray-400">
+                                HTML • CSS • JavaScript • React • Node.js • Python • C • Kotlin • Firebase • Git • GitHub • Linux
+                            </div>
+                        </div>
+                        
+                        <div class="mb-8">
+                            <blockquote class="border-l-2 border-[#ff4b13] pl-4 italic text-gray-400">
+                                “Build it. Break it. Learn it. Make it better.”
+                            </blockquote>
+                        </div>
+                        
+                        <a href="https://github.com/BipinDev404/" target="_blank" class="inline-flex items-center gap-2 bg-white text-black hover:bg-gray-200 px-6 py-3 rounded-full text-sm font-bold transition">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.416 22 12c0-5.523-4.477-10-10-10z"></path></svg>
+                            GitHub: BipinDev404
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="border-t border-white/10 py-12 text-center text-gray-500 text-sm bg-black relative z-10">
+        <p>&copy; 2026 BYPASS Vault. Open source, offline first.</p>
+    </footer>
+</body>
+</html>

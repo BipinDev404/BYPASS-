@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "BYPASS Vault",
+  "version": "1.3.0",
+  "description": "Floating, secure password generator and vault.",
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Toggle BYPASS Vault",
+    "default_icon": "icon.svg"
+  },
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "popup.html",
+        "style.css",
+        "popup.js",
+        "icon.svg"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ],
+  "icons": {
+    "16": "icon.svg",
+    "48": "icon.svg",
+    "128": "icon.svg"
+  }
+}

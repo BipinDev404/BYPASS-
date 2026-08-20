@@ -4,10 +4,11 @@
   "description": "Password generator and vault.",
   "scripts": {
     "dev": "node server.js",
-    "build": "echo 'No build step required'",
+    "build": "node build.js",
     "start": "node server.js"
   },
   "dependencies": {
+    "adm-zip": "^0.6.0",
     "express": "^4.21.0"
   }
 }
