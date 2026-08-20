@@ -1,0 +1,13 @@
+{
+  "name": "bypass-web",
+  "version": "1.2.0",
+  "description": "Password generator and vault.",
+  "scripts": {
+    "dev": "node server.js",
+    "build": "echo 'No build step required'",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.0"
+  }
+}
